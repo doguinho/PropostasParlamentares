@@ -41,7 +41,6 @@ namespace PropostasParlamentares.Controllers
 
         // POST: VotateController/Create
         [HttpPost]
-        [Route("adicionar")]
         public String Create([FromBody] Votante votante)
         {
             if (lista.Where(v => v.id == votante.id).Count() > 0)
@@ -55,44 +54,60 @@ namespace PropostasParlamentares.Controllers
         }
 
         // GET: VotateController/Edit/5
+        [HttpGet]
+        [Route("{id}")]
         public ActionResult Edit(int id)
         {
-            return View();
+            //return View();
+            return null;
         }
 
         // POST: VotateController/Edit/5
         [HttpPost]
+        [Route("{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                // Fix somente para realizar o build
+                return null;
+                
             }
             catch
             {
-                return View();
+                //return View();
+                // Fix somente para realizar o build
+                return null;
             }
         }
 
         // GET: VotateController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //public ActionResult Delete(int id)
+        //{
+        //    //return View();
+        //    // Fix somente para realizar o build
+        //    return null;
+        //}
 
         // POST: VotateController/Delete/5
-        [HttpPost]
+        [HttpDelete]
+        [Route("{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                // Fix somente para realizar o build
+                return null;
             }
             catch
             {
-                return View();
+                //return View();
+                // Fix somente para realizar o build
+                return null;
             }
         }
     }
