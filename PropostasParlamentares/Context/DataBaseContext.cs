@@ -21,7 +21,7 @@ namespace PropostasParlamentares.Context
             if (!optionsBuilder.IsConfigured)
             {
                 var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
-                optionsBuilder.UseOracle(config.GetConnectionString(@"User Id=fiap;Password=fiapbuzz;Data Source=localhost:5500/XE"));
+                optionsBuilder.UseOracle(config.GetConnectionString("DefaultConnection"));
             }
 
         }

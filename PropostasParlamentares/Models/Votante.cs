@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PropostasParlamentares.Models
 {
-    [Table("votante")]
+    [Table("fiap.votante")]
     public class Votante
     {
         [Key]
