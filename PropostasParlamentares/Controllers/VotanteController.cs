@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PropostasParlamentares.Models;
+using PropostasParlamentares.Context;
 
 namespace PropostasParlamentares.Controllers
 {
@@ -26,8 +27,8 @@ namespace PropostasParlamentares.Controllers
         [Route("listar")]
         public IList<Votante> List()
         {
-
-            return this.lista;
+            DataBaseContext ctx = new DataBaseContext();
+            return ctx.Votante.ToList<Votante>();
         }
 
         // GET: VotateController/Details/5
