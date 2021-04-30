@@ -8,6 +8,8 @@ using PropostasParlamentares.Context;
 
 namespace PropostasParlamentares.Controllers
 {
+    [ApiController]
+    [Route("/votacao")]
     public class VotacaoController : Controller
     {
         private readonly DataBaseContext ctx;
