@@ -7,13 +7,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PropostasParlamentares.Models
 {
-    [Table("fiap.votante")]
+    [Table("VOTANTE")]
     public class Votante
     {
         [Key]
-        [Column("id")]
+        [Column("ID")]
         public int id { get; set; }
-        [Column("bc_address")]
+        [Column("BC_ADDRESS")]
         public String bc_address { get; set; }
     }
 }

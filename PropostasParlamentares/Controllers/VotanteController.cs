@@ -13,13 +13,11 @@ namespace PropostasParlamentares.Controllers
     [Route("/votante")]
     public class VotanteController : Controller
     {
-        private List<Votante> lista = new List<Votante>();
+        private readonly DataBaseContext ctx;
 
         public VotanteController()
         {
-            Votante votante = new Votante();
-            votante.id = 1;
-            this.lista.Add(votante);
+            ctx = new DataBaseContext();
         }
 
         // GET: VotateController
@@ -27,7 +25,6 @@ namespace PropostasParlamentares.Controllers
         [Route("listar")]
         public IList<Votante> List()
         {
-            DataBaseContext ctx = new DataBaseContext();
             return ctx.Votante.ToList<Votante>();
         }
 
@@ -36,80 +33,35 @@ namespace PropostasParlamentares.Controllers
         [Route("detalhes/{id}")]
         public IList<Votante> Details(int id)
         {
-            return lista.Where(
-                v => v.id == id).ToList();
+            return ctx.Votante.ToList<Votante>().Where(v => v.id == id).ToList();
         }
 
         // POST: VotateController/Create
         [HttpPost]
-        public String Create([FromBody] Votante votante)
+        [Route("inserir")]
+        public void Create([FromBody] Votante votante)
         {
-            if (lista.Where(v => v.id == votante.id).Count() > 0)
-            {
-                return "Já existe um votante com esse id";
-            } else
-            {
-                this.lista.Add(votante);
-                return "Votante adicionado com sucesso";
-            }
+            ctx.Votante.Add(votante);
+            ctx.SaveChanges();
         }
 
         // GET: VotateController/Edit/5
-        [HttpGet]
-        [Route("{id}")]
-        public ActionResult Edit(int id)
+        [HttpPut]
+        [Route("editar")]
+        public void Edit([FromBody] Votante votante)
         {
-            //return View();
-            return null;
+            ctx.Votante.Update(votante);
+            ctx.SaveChanges();
         }
 
-        // POST: VotateController/Edit/5
-        [HttpPost]
-        [Route("{id}")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                //return RedirectToAction(nameof(Index));
-                // Fix somente para realizar o build
-                return null;
-                
-            }
-            catch
-            {
-                //return View();
-                // Fix somente para realizar o build
-                return null;
-            }
-        }
-
-        // GET: VotateController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    //return View();
-        //    // Fix somente para realizar o build
-        //    return null;
-        //}
-
-        // POST: VotateController/Delete/5
         [HttpDelete]
-        [Route("{id}")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [Route("apagar/{id}")]
+        public void Delete(int id)
         {
-            try
-            {
-                //return RedirectToAction(nameof(Index));
-                // Fix somente para realizar o build
-                return null;
-            }
-            catch
-            {
-                //return View();
-                // Fix somente para realizar o build
-                return null;
-            }
+            Votante votante = new Votante();
+            votante.id = id;
+            ctx.Votante.Remove(votante);
+            ctx.SaveChanges();
         }
     }
 }

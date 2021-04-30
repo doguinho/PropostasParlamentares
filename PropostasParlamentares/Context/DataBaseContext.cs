@@ -15,6 +15,8 @@ namespace PropostasParlamentares.Context
     {
 
         public DbSet<Votante> Votante { get; set; }
+        public DbSet<Voto> Voto { get; set; }
+        public DbSet<Votacao> Votacao { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
